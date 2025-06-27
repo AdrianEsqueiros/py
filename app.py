@@ -1,9 +1,11 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 import pandas as pd
 import joblib
 import os
 
 app = Flask(__name__)
+CORS(app)  # Permitir CORS
 
 # Cargar el modelo entrenado
 modelo = joblib.load(os.path.join(os.path.dirname(__file__), "StackingAnemia.pkl"))
@@ -12,7 +14,6 @@ modelo = joblib.load(os.path.join(os.path.dirname(__file__), "StackingAnemia.pkl
 def predict():
     data = request.json
 
-    # Crear un DataFrame a partir de los datos recibidos
     nuevo_paciente = pd.DataFrame([{
         "EdadMeses": data.get("EdadMeses"),
         "AlturaREN": data.get("AlturaREN"),
@@ -27,11 +28,9 @@ def predict():
         "Indice_social": data.get("Indice_social")
     }])
 
-    # Realizar la predicción
     prediccion = modelo.predict(nuevo_paciente)[0]
     prob_anemia = modelo.predict_proba(nuevo_paciente)[0][1]
 
-    # Devolver los resultados en formato JSON
     return jsonify({
         "¿Tiene anemia?": "Sí" if prediccion == 1 else "No",
         "Probabilidad de anemia": round(prob_anemia, 4)
