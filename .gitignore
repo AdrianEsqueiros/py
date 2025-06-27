@@ -1,0 +1,42 @@
+# Entornos virtuales
+venv/
+.env/
+*.env
+
+# Archivos de Python compilados
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+python/
+
+# Archivos de configuración de entorno
+*.env
+.env.*
+package-lock.json
+# Archivos de logs
+*.log
+
+# Archivos de dependencias de Serverless
+.serverless/
+
+# Archivos de VS Code
+.vscode/
+
+# Node modules (por si acaso)
+node_modules/
+
+# Archivos de paquetes
+*.egg-info/
+dist/
+build/
+
+# Modelos y datos temporales
+
+*.h5
+*.csv
+
+# Otros archivos y carpetas a ignorar
+.DS_Store
+Thumbs.db
