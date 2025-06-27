@@ -32,8 +32,8 @@ def predict():
     prob_anemia = modelo.predict_proba(nuevo_paciente)[0][1]
 
     return jsonify({
-        "¿Tiene anemia?": "Sí" if prediccion == 1 else "No",
-        "Probabilidad de anemia": round(prob_anemia, 4)
+        "tiene_anemia": "Sí" if prediccion == 1 else "No",
+        "probabilidad_de_anemia": round(prob_anemia, 4)
     })
 
 if __name__ == '__main__':
